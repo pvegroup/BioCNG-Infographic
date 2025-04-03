@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow"> 
+  <title>Display BioCNG vs Coventioanl Fuel Comparison</title>
+
+  <style>
+    
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioCNG vs Conventional Fuels Comparison</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Card Design */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Chart Container for Responsiveness */
+        .chart-container {
+            position: relative;
+            height: 0;
+            width: 100%;
+            padding-bottom: 60%; /* Aspect Ratio */
+        }
+
+        /* Key Takeaways Section */
+        .key-takeaways {
+            background-color: #e8f5e9;
+            border-left: 5px solid #4CAF50;
+            padding: 15px 20px;
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .key-takeaways h3 {
+            margin-top: 0;
+            color: #2E7D32;
+        }
+
+        .key-takeaways ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+
+        .key-takeaways li {
+            margin-bottom: 8px;
+        }
+
+        /* Production Process Section */
+        .process-section {
+            margin-top: 30px;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .step {
+            flex: 1 0 45%;
+            min-width: 250px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            background-color: #4CAF50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: #2E7D32;
+            font-size: 18px;
+        }
+
+        /* Icons for Process Steps */
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .chart-container {
+                padding-bottom: 80%; /* Increase aspect ratio on tablets */
+            }
+            
+            .step {
+                flex: 1 0 100%; /* Full width on smaller screens */
+            }
+            
+            .card-header {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chart-container {
+                padding-bottom: 100%; /* Further increase aspect ratio on mobile */
+            }
+            
+            .card-header {
+                font-size: 18px;
+                padding: 15px;
+            }
+            
+            .card-body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Chart Card -->
+        <div class="card">
+            <div class="card-header">BioCNG vs. Conventional Fuels: Emissions Comparison</div>
+            <div class="card-body">
+                <div class="chart-container">
+                    <canvas id="emissionsChart"></canvas>
+                </div>
+                
+                <!-- Key Takeaways Section -->
+                <div class="key-takeaways">
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>BioCNG produces drastically lower emissions compared to conventional fuels, with reductions of up to 99.9% for some pollutants</li>
+                        <li>Contains upto 99.x% methane after purification (compared to 55-60% in raw biogas)</li>
+                        <li>Compressed at 200-250 Bar for efficient storage and transport</li>
+                        <li>Higher ignition temperature (600°C) makes BioCNG safer than petrol and diesel</li>
+                        <li>BioCNG has a flammability range of 5-15%, making it less flammable and therefore safer than many traditional fuels</li>
+                        <li>High octane number results in improved thermal efficiency in engines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Production Process Section -->
+        <div class="card">
+            <div class="card-header">BioCNG Production Process</div>
+            <div class="card-body">
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Feedstock Collection</div>
+                        </div>
+                        <div class="step-content">
+                            Collection of agricultural waste, food waste, municipal solid waste, or animal dung that serves as raw material for biogas generation.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Anaerobic Digestion</div>
+                        </div>
+                        <div class="step-content">
+                            Microorganisms break down organic matter in absence of oxygen through four stages: hydrolysis, acidogenesis, acetogenesis, and methanogenesis, producing biogas with 55-60% methane.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Biogas Purification</div>
+                        </div>
+                        <div class="step-content">
+                            Raw biogas undergoes purification using various technologies like water scrubbing, pressure swing adsorption, or membrane separation to remove CO₂, H₂S, and moisture.
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Compression</div>
+                        </div>
+                        <div class="step-content">
+                            Purified biogas (96-97% methane) is compressed at 200-250 Bar to produce BioCNG, ready for use in vehicles and other applications with minimal modifications to existing infrastructure.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- SEO Backlink to PVE -->
+<p style="text-align:center; margin-top: 20px;">
+  <a href="https://www.pvegroup.asia/BioLNG-supplier-distributor-Thailand-Indonesia-Malaysia.html" target="_blank" rel="dofollow">
+    Learn more about BioCNG Supplier and Distributor from PVE Group
+  </a>
+</p>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the chart canvas element
+            const ctx = document.getElementById('emissionsChart').getContext('2d');
+            
+            // Chart data - based on information from the document
+            // The document mentions reduced levels of carbon monoxide (0.02%), hydrocarbons (0.12%), 
+            // nitrogen oxides (0.48%), and suspended particles (0.1%) compared to conventional fuels
+            const data = {
+                labels: ['Carbon Monoxide', 'Hydrocarbons', 'Nitrogen Oxides', 'Suspended Particles'],
+                datasets: [
+                    {
+                        label: 'BioCNG (% of emissions)',
+                        data: [0.02, 0.12, 0.48, 0.1],
+                        backgroundColor: 'rgba(76, 175, 80, 0.7)',
+                        borderColor: 'rgba(76, 175, 80, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Conventional Fuels (% of emissions)',
+                        data: [100, 100, 100, 100],
+                        backgroundColor: 'rgba(239, 83, 80, 0.7)',
+                        borderColor: 'rgba(239, 83, 80, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+            
+            // Chart configuration options
+            const options = {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Horizontal bar chart
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14
+                            },
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                            display: true,
+                            drawBorder: true,
+                            drawOnChartArea: true
+                        },
+                        title: {
+                            display: true,
+                            text: 'Emissions (% relative to conventional fuels)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            };
+            
+            // Create and render the chart
+            const emissionsChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
+            });
+            
+            // Function to handle responsiveness
+            function resizeChart() {
+                emissionsChart.resize();
+            }
+            
+            // Add event listener for window resize
+            window.addEventListener('resize', resizeChart);
+        });
+    </script>
+</body>
+</html>
+
+  <script>
+    
+  </script>
+</body>
+</html>
